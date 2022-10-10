@@ -51,6 +51,14 @@ pipeline {
                 }                
             }
         }
+        stage ('E2E Test') {
+            steps {
+                dir('e2e-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/thinogueiras/tasks-e2e-tests.git'
+                    bat 'mvn test'
+                }                
+            }
+        }
     }
 }
 
